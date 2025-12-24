@@ -7,13 +7,17 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url)
     const key = searchParams.get('key')
 
-    let query = supabase.from('settings').select('*')
+    let data, error
 
     if (key) {
-      query = query.eq('key', key).single()
+      const result = await supabase.from('settings').select('*').eq('key', key).single()
+      data = result.data
+      error = result.error
+    } else {
+      const result = await supabase.from('settings').select('*')
+      data = result.data
+      error = result.error
     }
-
-    const { data, error } = await query
 
     if (error) {
       // If table doesn't exist yet, return null data instead of error

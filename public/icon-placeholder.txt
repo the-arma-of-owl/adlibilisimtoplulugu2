@@ -1,0 +1,11 @@
+PWA icon dosyaları oluşturmanız gerekiyor:
+
+1. icon-192.png (192x192 piksel)
+2. icon-512.png (512x512 piksel)
+
+Bu dosyaları public/ klasörüne ekleyin.
+
+Logo.png dosyanızdan bu icon'ları oluşturmak için:
+- https://realfavicongenerator.net/ kullanabilirsiniz
+- Veya görsel düzenleme programınızla resize edebilirsiniz
+

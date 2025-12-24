@@ -30,11 +30,16 @@ export default function QRScanner({ onScanSuccess, onScanFailure }: QRScannerPro
           onScanSuccess(decodedText)
           stopScanning()
         },
-        (err) => {
+        (err: string | { message?: string } | unknown) => {
           // Ignore scanning errors (they're expected during scanning)
           if (onScanFailure) {
             // err can be a string or an object with message property
-            const errorMessage = typeof err === 'string' ? err : err?.message || 'Scan error'
+            let errorMessage = 'Scan error'
+            if (typeof err === 'string') {
+              errorMessage = err
+            } else if (err && typeof err === 'object' && 'message' in err) {
+              errorMessage = (err as { message: string }).message
+            }
             onScanFailure(errorMessage)
           }
         }

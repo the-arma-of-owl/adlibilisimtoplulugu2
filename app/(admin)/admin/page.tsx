@@ -121,6 +121,12 @@ export default function AdminDashboard() {
           >
             QR Okuyucu
           </Link>
+          <Link
+            href="/admin/lottery"
+            className="px-4 py-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700 transition-colors"
+          >
+            Kura Çekme
+          </Link>
         </nav>
 
         {/* Stats */}
@@ -161,12 +167,18 @@ export default function AdminDashboard() {
             >
               Yeni Etkinlik Ekle
             </Link>
-            <Link
-              href="/admin/scanner"
-              className="px-6 py-3 bg-green-600 dark:bg-green-500 text-white rounded-lg hover:bg-green-700 dark:hover:bg-green-400 transition-colors"
-            >
-              QR Kod Okumayı Başlat
-            </Link>
+          <Link
+            href="/admin/scanner"
+            className="px-6 py-3 bg-green-600 dark:bg-green-500 text-white rounded-lg hover:bg-green-700 dark:hover:bg-green-400 transition-colors"
+          >
+            QR Kod Okumayı Başlat
+          </Link>
+          <Link
+            href="/admin/lottery"
+            className="px-6 py-3 bg-purple-600 dark:bg-purple-500 text-white rounded-lg hover:bg-purple-700 dark:hover:bg-purple-400 transition-colors"
+          >
+            Kura Çekme
+          </Link>
           </div>
         </div>
       </main>

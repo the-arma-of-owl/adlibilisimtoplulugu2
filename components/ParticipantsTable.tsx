@@ -9,6 +9,7 @@ interface Participant {
   entry_code: string
   has_entered: boolean
   entered_at: string | null
+  entered_by_admin_id?: string | null
   created_at: string
 }
 
@@ -21,6 +22,29 @@ export default function ParticipantsTable({
   participants,
   onRefresh,
 }: ParticipantsTableProps) {
+  const handleDelete = async (id: string, name: string) => {
+    if (!confirm(`${name} adlı katılımcıyı silmek istediğinize emin misiniz?`)) {
+      return
+    }
+
+    try {
+      const response = await fetch(`/api/admin/participants/${id}`, {
+        method: 'DELETE',
+      })
+
+      if (!response.ok) {
+        const result = await response.json()
+        throw new Error(result.error || 'Silme işlemi başarısız')
+      }
+
+      if (onRefresh) {
+        onRefresh()
+      }
+    } catch (error: any) {
+      alert(error.message || 'Katılımcı silinirken bir hata oluştu')
+    }
+  }
+
   return (
     <div className="w-full">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-4">
@@ -58,12 +82,15 @@ export default function ParticipantsTable({
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
                   Giriş Zamanı
                 </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                  İşlemler
+                </th>
               </tr>
             </thead>
             <tbody className="bg-gray-800 divide-y divide-gray-700">
               {participants.length === 0 ? (
                 <tr>
-                  <td colSpan={5} className="px-6 py-4 text-center text-gray-400">
+                  <td colSpan={6} className="px-6 py-4 text-center text-gray-400">
                     Henüz katılımcı bulunmamaktadır.
                   </td>
                 </tr>
@@ -99,6 +126,14 @@ export default function ParticipantsTable({
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
                       {participant.entered_at ? formatDate(participant.entered_at) : '-'}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm">
+                      <button
+                        onClick={() => handleDelete(participant.id, participant.name)}
+                        className="px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700 transition-colors text-sm"
+                      >
+                        Sil
+                      </button>
                     </td>
                   </tr>
                 ))
@@ -150,6 +185,14 @@ export default function ParticipantsTable({
                     <span className="text-gray-300">{formatDate(participant.entered_at)}</span>
                   </div>
                 )}
+                <div className="flex items-center justify-end pt-2">
+                  <button
+                    onClick={() => handleDelete(participant.id, participant.name)}
+                    className="px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700 transition-colors text-sm"
+                  >
+                    Sil
+                  </button>
+                </div>
               </div>
             </div>
           ))

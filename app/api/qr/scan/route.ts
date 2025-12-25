@@ -55,6 +55,7 @@ export async function POST(request: NextRequest) {
       .update({
         has_entered: true,
         entered_at: new Date().toISOString(),
+        entered_by_admin_id: user.id,
       })
       .eq('id', participant.id)
       .select()

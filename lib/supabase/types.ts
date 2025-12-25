@@ -60,6 +60,7 @@ export interface Database {
           qr_token: string
           has_entered: boolean
           entered_at: string | null
+          entered_by_admin_id: string | null
           created_at: string
         }
         Insert: {
@@ -71,6 +72,7 @@ export interface Database {
           qr_token: string
           has_entered?: boolean
           entered_at?: string | null
+          entered_by_admin_id?: string | null
           created_at?: string
         }
         Update: {
@@ -82,6 +84,7 @@ export interface Database {
           qr_token?: string
           has_entered?: boolean
           entered_at?: string | null
+          entered_by_admin_id?: string | null
           created_at?: string
         }
       }

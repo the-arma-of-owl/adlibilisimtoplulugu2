@@ -1,4 +1,4 @@
-# Adli Bilişim Topluluğu Web Sitesi
+# Adli Bilişim Topluluğu Web Sitesi (Vibe Coding)
 
 Adli Bilişim Topluluğu için geliştirilmiş, etkinlik odaklı web sitesi. Etkinlik timeline'ı, QR kod tabanlı giriş sistemi ve admin paneli içerir.
 

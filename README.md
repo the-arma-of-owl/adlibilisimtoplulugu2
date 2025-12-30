@@ -24,7 +24,7 @@ Adli Bilişim Topluluğu için geliştirilmiş, etkinlik odaklı web sitesi. Etk
 ### 1. Projeyi Klonlayın
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/the-arma-of-owl/adlibilisimtoplulugu2
 cd abt
 ```
 
